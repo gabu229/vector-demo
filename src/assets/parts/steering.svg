@@ -1,0 +1,23 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#0b0b0c"/>
+  <rect x="110" y="120" width="180" height="180" rx="26" fill="#141416" stroke="#3a3a3c" stroke-width="3"/>
+  <rect x="150" y="150" width="100" height="46" rx="6" fill="#0d0d0e" stroke="#2c2c2e" stroke-width="2"/>
+  <text x="200" y="182" font-family="monospace" font-size="20" fill="#6ee3e8" text-anchor="middle">N</text>
+  <g fill="#3a3a3c" stroke="#55555a" stroke-width="1.5">
+    <circle cx="135" cy="150" r="10"/>
+    <circle cx="265" cy="150" r="10"/>
+    <circle cx="135" cy="270" r="10"/>
+    <circle cx="265" cy="270" r="10"/>
+  </g>
+  <g fill="#d9662c">
+    <circle cx="135" cy="150" r="4"/>
+    <circle cx="265" cy="270" r="4"/>
+  </g>
+  <g fill="#6ee3e8">
+    <circle cx="265" cy="150" r="4"/>
+  </g>
+  <g fill="#e6e6e6">
+    <circle cx="135" cy="270" r="4"/>
+  </g>
+  <rect x="150" y="220" width="100" height="18" rx="4" fill="#1c1c1e" stroke="#3a3a3c"/>
+</svg>
