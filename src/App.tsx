@@ -2,7 +2,7 @@ import gsap from "gsap";
 // import "lenis/dist/lenis.css";
 
 import ReactLenis, { type LenisRef } from "lenis/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { BrandsRow } from "@/components/brands/BrandsRow";
 import { HeroSection } from "@/components/hero/HeroSection";
@@ -17,11 +17,25 @@ import { CTASection } from "./components/CtaSection";
 import { Footer } from "./components/Footer";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger, SplitText } from "gsap/all";
+import { Loader } from "./components/Loader";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 function App() {
   const lenisRef = useRef<LenisRef>(null);
+
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isBrowserLoaded, setIsBrowserLoaded] = useState<boolean>(
+    () => typeof document !== "undefined" && document.readyState === "complete",
+  );
+
+  useEffect(() => {
+    if (document.readyState === "complete") return;
+
+    const handleLoad = () => setIsBrowserLoaded(true);
+    window.addEventListener("load", handleLoad);
+    return () => window.removeEventListener("load", handleLoad);
+  }, []);
 
   useEffect(() => {
     gsap.ticker.lagSmoothing(0);
@@ -66,19 +80,28 @@ function App() {
       ref={lenisRef}
     >
       <div className="min-h-screen bg-ink text-fg">
-        <Navbar />
-        <main>
-          <HeroSection />
-          <BrandsRow />
-          <PartAnalysisSection />
-          <DetailsSection />
-          <ShowcaseSection />
-          <DataSection />
-          <AskSection />
-          <FridaySection />
-          <CTASection />
-          <Footer />
-        </main>
+        {isLoading ? (
+          <Loader
+            isBrowserLoaded={isBrowserLoaded}
+            onComplete={() => setIsLoading(false)}
+          />
+        ) : (
+          <>
+            <Navbar />
+            <main>
+              <HeroSection />
+              <BrandsRow />
+              <PartAnalysisSection />
+              <DetailsSection />
+              <ShowcaseSection />
+              <DataSection />
+              <AskSection />
+              <FridaySection />
+              <CTASection />
+              <Footer />
+            </main>
+          </>
+        )}
       </div>
     </ReactLenis>
   );
