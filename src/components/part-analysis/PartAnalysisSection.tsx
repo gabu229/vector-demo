@@ -1,11 +1,8 @@
 import { parts } from "@/data/parts";
 import { PartCard } from "./PartCard";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { RevealText } from "../RevealText";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export function PartAnalysisSection() {
   useGSAP(() => {

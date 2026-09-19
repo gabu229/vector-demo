@@ -49,7 +49,7 @@ const footerData: FooterColumn[] = [
 
 export function Footer() {
   return (
-    <footer className="w-full min-h-screen antialiased" id="footer">
+    <footer className="w-full min-h-screen antialiased relative z-50 bg-black p-6 pt-12 md:p-16" id="footer">
       <div className="w-full max-w-7xl mx-auto">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16">

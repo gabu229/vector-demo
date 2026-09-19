@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 
 export function CTASection() {
   return (
-    <section id="ctaSection" className="min-h-screen px-6 py-24 lg:py-28">
+    <section id="ctaSection" className="min-h-screen px-6 py-24 lg:py-28 relative z-30">
       <div className="mx-auto max-w-300">
         <div className="mb-12 flex flex-col justify-center items-center text-center gap-4 ">
           <RevealText

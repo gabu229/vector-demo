@@ -2,26 +2,23 @@ import { processes, RaceProcess } from "@/data/race";
 import { RevealText } from "./RevealText";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export function FridaySection() {
   useGSAP(() => {
     gsap.fromTo(
       ".f-card",
       {
-        x: "-50%",
+        xPercent: -50,
         opacity: 0,
         filter: "blur(8px)",
       },
       {
+        xPercent: 0,
         opacity: 1,
-        x: "0",
         filter: "blur(0px)",
-        ease: "bounce.inOut",
-        duration: 1.5,
-        stagger: 0.3,
+        // ease: "",
+        duration: 0.2,
+        stagger: 0.1,
         yoyo: true,
         scrollTrigger: {
           trigger: "#fridaySection",
@@ -35,9 +32,9 @@ export function FridaySection() {
   return (
     <section
       id="fridaySection"
-      className="min-h-screen px-6 py-24 lg:py-28 flex flex-col justify-center items-center gap-5 lg:gap-16"
+      className="min-h-screen px-6 py-24 lg:py-28 flex flex-col justify-center items-center gap-5 lg:gap-16 z-20 bg-black"
     >
-      <div className=" max-w-300 flex flex-col justify-center items-center text-center gap-5">
+      <div className="w-full max-w-300 flex flex-col justify-center items-center text-center gap-5">
         <RevealText as={"h2"} className="text-3xl font-medium sm:text-4xl">
           From Friday To Flag.
         </RevealText>

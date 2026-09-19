@@ -3,8 +3,8 @@ import { RevealText } from "./RevealText";
 export function AskSection() {
   return (
     <section
-      id="ask"
-      className="bg-[#F7F7F4] min-h-screen text-black! px-6 py-24 lg:py-28"
+      id="askSection"
+      className="bg-[#F7F7F4] min-h-screen text-black! px-6 py-24 lg:py-28 relative z-20"
     >
       <div className="mx-auto max-w-300">
         <div className="mb-12 flex flex-col justify-center items-center text-center gap-4 border-b border-line pb-6">

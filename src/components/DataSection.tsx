@@ -1,7 +1,6 @@
 import { TowerControl } from "lucide-react";
 import { RevealText } from "./RevealText";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 
 type Insight = {
@@ -29,8 +28,6 @@ const insights: Insight[] = [
   },
 ];
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
-
 export function DataSection() {
   useGSAP(() => {
     gsap.fromTo(
@@ -44,10 +41,10 @@ export function DataSection() {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        ease: "power2.inOut",
-        delay: 1,
-        duration: 1.5,
-        stagger: 0.4,
+        // ease: "power2.inOut",
+        delay: 0.75,
+        duration: 0.5,
+        stagger: 0.2,
         yoyo: true,
         scrollTrigger: {
           trigger: "#dataSection",
@@ -56,7 +53,7 @@ export function DataSection() {
         },
       },
     );
-    
+
     gsap.fromTo(
       ".img-00",
       {
@@ -66,9 +63,9 @@ export function DataSection() {
       {
         opacity: 1,
         filter: "blur(0px)",
-        ease: "power2.inOut",
+        // ease: "power2.inOut",
         delay: 1,
-        duration: 2.5,
+        duration: 1,
         scrollTrigger: {
           trigger: "#dataSection",
           start: "top 60%",
@@ -81,9 +78,9 @@ export function DataSection() {
   return (
     <section
       id="dataSection"
-      className="p-16 min-h-screen flex justify-center items-center"
+      className="p-6 md:p-16 min-h-screen flex justify-center items-center relative z-0"
     >
-      <div className="w-full mx-auto max-w-300 flex items-stretch justify-between gap-5 md:gap-10">
+      <div className="w-full mx-auto max-w-300 flex flex-col lg:flex-row lg:items-stretch justify-between gap-5 md:gap-10">
         <div className="w-full max-w-130! flex flex-col gap-4 md:gap-10 ">
           <RevealText
             as={"h2"}
@@ -113,7 +110,7 @@ export function DataSection() {
           </div>
         </div>
 
-        <div className="w-full img-00 max-w-140! aspect-3/2.7 relative bg-card/50 backdrop-blur-sm border-white/20 rounded-3xl border-t-2 flex flex-col gap-5 overflow-hidden">
+        <div className="w-full min-h-100 hidden img-00 max-w-140! aspect-3/2.7 relative bg-card/50 backdrop-blur-sm border-white/20 rounded-3xl border-t-2 lg:flex flex-col gap-5 overflow-hidden">
           <div className="w-full absolute top-12 left-12 overflow-hidden rounded-md">
             <img
               src="/assets/details/vector-dashboard-sidebar.png"

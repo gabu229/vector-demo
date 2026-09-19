@@ -101,7 +101,7 @@ export function PartCard({ part }: PartCardProps) {
         />
 
         {/* Overlay gradient for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/40 to-transparent" />
 
         {/* Hover Details Overlay */}
         <div
@@ -112,16 +112,16 @@ export function PartCard({ part }: PartCardProps) {
         >
           {/* Top section - Title and Tag */}
           <div className="w-full space-y-2">
-            <h5 className="text-xl font-bold text-white">{title}</h5>
+            <h5 className="sm:text-xl font-bold text-white">{title}</h5>
             <hr className="border-primary" />
           </div>
 
           {/* Middle section - Metrics */}
           {metrics.length > 0 && (
-            <div className="space-y-2 w-full">
+            <div className="space-y-1 md:space-y-2 w-full">
               {metrics.map((metric, index) => (
                 <div key={index} className="space-y-1">
-                  <div className="flex items-center justify-between text-sm text-white/70">
+                  <div className="flex items-center justify-between text-xs sm:text-sm text-white/70">
                     <span>{metric.label}</span>
                     <span className="font-mono font-bold">{metric.value}</span>
                   </div>
@@ -133,7 +133,7 @@ export function PartCard({ part }: PartCardProps) {
 
           {/* Bottom section - Recommendation */}
           {recommendation && (
-            <div className="w-full flex items-start gap-4">
+            <div className="w-full flex items-start gap-2 md:gap-4">
               <div className="p-1 rounded-xs bg-primary/20">
                 <LucideChartNoAxesColumn className="h-6 w-6 text-primary" />
               </div>
@@ -141,7 +141,7 @@ export function PartCard({ part }: PartCardProps) {
                 <div className="flex items-center gap-2 text-xs text-white/60">
                   <span className="tracking-wider">Recommendation</span>
                 </div>
-                <p className="text-sm text-primary">{recommendation}</p>
+                <p className="text-xs sm:text-sm text-primary">{recommendation}</p>
               </div>
             </div>
           )}

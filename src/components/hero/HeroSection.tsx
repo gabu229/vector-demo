@@ -1,14 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CarCarousel } from "./CarCarousel";
-import { ScrollTrigger, SplitText } from "gsap/all";
 import gsap from "gsap";
 import { useRef } from "react";
 import { LN4Link } from "../ln-link";
 import { useGSAP } from "@gsap/react";
 import { RevealText } from "../RevealText";
-
-gsap.registerPlugin(ScrollTrigger, SplitText);
+import { SplitText } from "gsap/all";
+import { useMd } from "@/hooks/use-media-queries";
 
 export function HeroSection() {
   const topSectionRef = useRef<HTMLDivElement | null>(null);
@@ -17,6 +16,8 @@ export function HeroSection() {
   const headerBlockRef = useRef<HTMLDivElement | null>(null);
   const ctaRef = useRef<HTMLDivElement | null>(null);
   const badgeRef = useRef<HTMLDivElement | null>(null);
+
+  const isMd = useMd();
 
   useGSAP(() => {
     const heroSplit = new SplitText(headerRef.current, {
@@ -66,7 +67,7 @@ export function HeroSection() {
         pin: true,
         pinSpacing: true,
         scrub: 1,
-        // anticipatePin: 1,
+        anticipatePin: 1,
       },
     });
 
@@ -86,7 +87,7 @@ export function HeroSection() {
         carSectionRef.current,
         {
           marginTop: "-20%",
-          scale: 1.6667, // 1 + 1/1.5 ≈ 1.6667
+          scale: isMd ? 1.6667 : 1.3,
           // transformOrigin: "center center",
           ease: "none",
         },
@@ -95,7 +96,7 @@ export function HeroSection() {
       .to(
         ctaRef.current,
         {
-          y: "100%",
+          y: isMd ? "100%" : 0,
           // opacity: 0,
           ease: "none",
         },
@@ -114,11 +115,11 @@ export function HeroSection() {
     <section
       ref={topSectionRef}
       id="top"
-      className="relative overflow-hidden px-6 pt-16 sm:pt-30 lg:pt-40"
+      className="relative overflow-hidden px-6 pt-30 lg:pt-40"
     >
       <div
         ref={headerBlockRef}
-        className="relative mx-auto flex max-w-4xl flex-col items-center text-center"
+        className="relative mx-auto flex max-w-4xl flex-col items-center text-center gap-10 md:gap-5"
       >
         <div className="blur-3xl opacity-0" ref={badgeRef}>
           <Badge className="px-4 py-2 bg-white/5 backdrop-blur-3xl">

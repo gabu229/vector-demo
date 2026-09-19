@@ -1,14 +1,14 @@
+import { useMd } from "@/hooks/use-media-queries";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export function ShowcaseSection() {
+  const isMd = useMd();
+
   useGSAP(() => {
     const unmaskTimeline = gsap.timeline({
       defaults: {
-        ease: "none", // Linear easing for scrub animations
+        ease: "none",
       },
       scrollTrigger: {
         trigger: "#showcase",
@@ -26,7 +26,7 @@ export function ShowcaseSection() {
         ".masked-img-01",
         {
           scale: 1,
-          maskSize: "400%",
+          maskSize: isMd ? "400%" : "800%",
           duration: 5,
         },
         0,

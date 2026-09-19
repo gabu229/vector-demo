@@ -15,6 +15,10 @@ import { AskSection } from "./components/AskSection";
 import { FridaySection } from "./components/FridaySection";
 import { CTASection } from "./components/CtaSection";
 import { Footer } from "./components/Footer";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger, SplitText } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 function App() {
   const lenisRef = useRef<LenisRef>(null);
@@ -35,6 +39,25 @@ function App() {
 
     return () => gsap.ticker.remove(update);
   }, []);
+
+  useGSAP(() => {
+    const sections = [
+      "#dataSection",
+      "#askSection",
+      "#fridaySection",
+      "#ctaSection",
+    ];
+
+    sections.forEach((sectionId) => {
+      ScrollTrigger.create({
+        trigger: sectionId,
+        start: "top top",
+        end: "bottom top",
+        pin: true,
+        pinSpacing: false,
+      });
+    });
+  });
 
   return (
     <ReactLenis

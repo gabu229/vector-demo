@@ -222,6 +222,7 @@ body {
   h6 {
     font-family: var(--font-heading) !important;
   }
+
 }
 
 @property --lch-c {
@@ -324,5 +325,4 @@ a.ln4-link {
 #footer {
   background-image: url("/assets/details/footer-bg.png");
   @apply bg-contain bg-no-repeat bg-bottom pb-[40vh] flex items-end justify-center;
-
 }

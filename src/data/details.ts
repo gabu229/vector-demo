@@ -28,4 +28,15 @@ export const details = [
       { label: "Peak Speed", value: "286 KM/H" },
     ],
   },
+  {
+    title: "Driver Input",
+    image: "/assets/details/003.png",
+    description:
+      "Every steering, throttle and brake input shapes the car's behavior on track. Vector connects driver intent with vehicle response to highlight where precision, confidence and consistency create lap time.",
+    metrics: [
+      { label: "Steering Input", value: "14.6°" },
+      { label: "Throttle Position", value: "87%" },
+      { label: "Driver Consistency", value: "96%" },
+    ],
+  },
 ];
