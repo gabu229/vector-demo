@@ -1,9 +1,6 @@
 import gsap from "gsap";
-// import "lenis/dist/lenis.css";
-
 import ReactLenis, { type LenisRef } from "lenis/react";
 import { useEffect, useRef, useState } from "react";
-
 import { BrandsRow } from "@/components/brands/BrandsRow";
 import { HeroSection } from "@/components/hero/HeroSection";
 import { Navbar } from "@/components/layout/Navbar";
@@ -23,20 +20,21 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 function App() {
   const lenisRef = useRef<LenisRef>(null);
-
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isBrowserLoaded, setIsBrowserLoaded] = useState<boolean>(
     () => typeof document !== "undefined" && document.readyState === "complete",
   );
 
   useEffect(() => {
-    if (document.readyState === "complete") return;
-
+    if (document.readyState === "complete") {
+      return;
+    }
     const handleLoad = () => setIsBrowserLoaded(true);
     window.addEventListener("load", handleLoad);
     return () => window.removeEventListener("load", handleLoad);
   }, []);
 
+  // Setup Lenis + GSAP integration
   useEffect(() => {
     gsap.ticker.lagSmoothing(0);
 
@@ -46,37 +44,79 @@ function App() {
 
     gsap.ticker.add(update);
 
-    // const lenisInstance = lenisRef.current?.lenis;
-    // if (lenisInstance) {
-    //   lenisInstance.on('scroll', ScrollTrigger.update);
-    // }
+    const lenisInstance = lenisRef.current?.lenis;
+    if (lenisInstance) {
+      lenisInstance.on("scroll", ScrollTrigger.update);
+    }
 
-    return () => gsap.ticker.remove(update);
+    return () => {
+      gsap.ticker.remove(update);
+      if (lenisInstance) {
+        lenisInstance.off("scroll", ScrollTrigger.update);
+      }
+    };
   }, []);
 
-  useGSAP(() => {
-    const sections = [
-      "#dataSection",
-      "#askSection",
-      "#fridaySection",
-      "#ctaSection",
-    ];
+  // Handle scroll position when loader completes
+  useEffect(() => {
+    if (!isLoading) {
+      // Ensure scroll is at top when content appears
+      window.scrollTo(0, 0);
 
-    sections.forEach((sectionId) => {
-      ScrollTrigger.create({
-        trigger: sectionId,
-        start: "top top",
-        end: "bottom top",
-        pin: true,
-        pinSpacing: false,
+      // Reset Lenis scroll position
+      if (lenisRef.current?.lenis) {
+        lenisRef.current.lenis.scrollTo(0, { immediate: true });
+      }
+
+      // Give DOM time to render, then refresh ScrollTrigger
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
+    }
+  }, [isLoading]);
+
+  useGSAP(() => {
+    if (isLoading) return;
+
+    // Wait for next frame to ensure DOM is fully rendered
+    const timer = setTimeout(() => {
+      const sections = [
+        "#dataSection",
+        "#askSection",
+        "#fridaySection",
+        "#ctaSection",
+      ];
+
+      sections.forEach((sectionId) => {
+        const element = document.querySelector(sectionId);
+        if (!element) {
+          console.warn(`Section ${sectionId} not found in DOM`);
+          return;
+        }
+
+        ScrollTrigger.create({
+          trigger: sectionId,
+          start: "top top",
+          end: "bottom top",
+          pin: true,
+          pinSpacing: false,
+          markers: false, // Set to true for debugging
+        });
       });
-    });
-  });
+
+      // Force recalculation after all pins are created
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, [isLoading]);
 
   return (
     <ReactLenis
       root
-      options={{ autoRaf: false, lerp: 0.08, duration: 1.5, smoothWheel: true }}
+      options={{ autoRaf: false, lerp: 0.08, duration: 2.5, smoothWheel: true }}
       ref={lenisRef}
     >
       <div className="min-h-screen bg-ink text-fg">
