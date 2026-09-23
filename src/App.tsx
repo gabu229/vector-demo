@@ -8,13 +8,13 @@ import { PartAnalysisSection } from "@/components/part-analysis/PartAnalysisSect
 import { DetailsSection } from "./components/DetailsSection";
 import { ShowcaseSection } from "./components/ShowcaseSection";
 import { DataSection } from "./components/DataSection";
-import { AskSection } from "./components/AskSection";
 import { FridaySection } from "./components/FridaySection";
 import { CTASection } from "./components/CtaSection";
 import { Footer } from "./components/Footer";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger, SplitText } from "gsap/all";
 import { Loader } from "./components/Loader";
+import ChatSection from "./components/ChatSection";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -82,7 +82,6 @@ function App() {
     const timer = setTimeout(() => {
       const sections = [
         "#dataSection",
-        "#askSection",
         "#fridaySection",
         "#ctaSection",
       ];
@@ -135,7 +134,7 @@ function App() {
               <DetailsSection />
               <ShowcaseSection />
               <DataSection />
-              <AskSection />
+              <ChatSection />
               <FridaySection />
               <CTASection />
               <Footer />

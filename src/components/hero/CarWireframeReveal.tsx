@@ -178,7 +178,7 @@ export function CarWireframeReveal({
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      className="relative aspect-video w-full cursor-pointer"
+      className="relative aspect-video w-full cursor-none"
     >
       <img
         src={solid}

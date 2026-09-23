@@ -51,7 +51,10 @@ export function ShowcaseSection() {
   });
 
   return (
-    <section id="showcase" className="p-16 min-h-screen">
+    <section
+      id="showcase"
+      className="p-16 min-h-screen cursor-keep-scrolling-light!"
+    >
       <div className="bb flex flex-wrap items-center justify-center gap-4">
         <div className="cc w-full h-[80vh] relative overflow-hidden rounded-3xl flex justify-center items-center">
           {/* <img

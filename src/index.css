@@ -222,7 +222,6 @@ body {
   h6 {
     font-family: var(--font-heading) !important;
   }
-
 }
 
 @property --lch-c {
@@ -315,6 +314,14 @@ a.ln4-link {
   mask-repeat: no-repeat;
   mask-size: 10%;
   mask-position: center;
+}
+
+@utility cursor-keep-scrolling-dark {
+  cursor: url("/assets/cursors/keep-scrolling-cursor-dark.svg"), auto;
+}
+
+@utility cursor-keep-scrolling-light {
+  cursor: url("/assets/cursors/keep-scrolling-cursor-light.svg"), auto;
 }
 
 #ctaSection {
